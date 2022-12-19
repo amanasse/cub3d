@@ -11,7 +11,9 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRCS    = 	cub3d.c\
-			cub3d_utils.c
+			cub3d_utils.c\
+			cub3d_check_errors.c\
+			cub3d_make_tab.c
 
 DIR_SRC_CUB3D = ./sources/srcs_cub3d/
 

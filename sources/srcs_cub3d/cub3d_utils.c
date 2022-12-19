@@ -6,11 +6,53 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:45:17 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/16 16:23:14 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:18:34 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+char	*ft_strcpy_path(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0' && src[i] != ' ')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+void print_tab(char **tab)
+{
+    int i;
+
+    i = 0;
+	if (tab)
+	{
+    	while (tab[i] != NULL)
+    	{
+    	    printf ("tab[%d] = %s\n", i, tab[i]);
+    	    i++;
+    	}
+	}    
+}
 
 char    *ft_dup_solong(char *s, int len)
 {
@@ -53,8 +95,11 @@ int	ft_strlen_cub3d(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
-		i++;
+	if (str != NULL)
+	{
+		while (str[i])
+			i++;
+	}
 	return (i);
 }
 void	free_tab(t_data *d)
