@@ -12,8 +12,12 @@ WHITE = \033[0;97m
 
 SRCS    = 	cub3d.c\
 			cub3d_utils.c\
+			cub3d_utils_2.c\
 			cub3d_check_errors.c\
-			cub3d_make_tab.c
+			cub3d_make_tab.c\
+			cub3d_init.c\
+			cub3d_destroy.c\
+			cub3d_make_path.c
 
 DIR_SRC_CUB3D = ./sources/srcs_cub3d/
 
@@ -24,7 +28,7 @@ OBJS = $(addprefix $(DIR_OBJ), $(OBJ))
 DEP = ${SRCS:.c=.d}
 DEPS = $(addprefix $(DIR_OBJ), $(DEP))
 
-LMLX	= -L minilibx-linux -lmlx -lXext -lX11
+LMLX	= -L minilibx-linux -lmlx -lXext -lX11 -lm
 NAME = cub3d
 
 HEADERS	= -I includes minilibx-linux

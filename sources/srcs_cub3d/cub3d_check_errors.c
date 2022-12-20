@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/19 17:07:51 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:36:22 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,15 @@ int	check_argv(char *str)
 	if (str[i] == '.')
 	{
 		if (ft_strcmp (&str[i], ".cub\0") == 0)
-			return (1);
+			return (0);
 		else
 		{
 			write (2, "Error\nthe map isn't a '.cub'\n", 29);
-			return (0);
+			return (-1);
 		}
 	}
 	write (2, "Error\nthe map isn't a '.cub'\n", 29);
-	return (0);
-}
-
-void init_check_tab(t_data *data)
-{
-	data->check_tab[0] = "NO\0";
-	data->check_tab[1] = "SO\0";
-	data->check_tab[2] = "WE\0";
-	data->check_tab[3] = "EA\0";
-	data->check_tab[4] = "F\0";
-	data->check_tab[5] = "C\0";
-	data->check_tab[6] = NULL;
+	return (-1);
 }
 
 int check_if_doublon(char *str, char *check_str)
@@ -61,15 +50,13 @@ int check_if_doublon(char *str, char *check_str)
 		if (str[i] == check_str[j])
 		{
 			if (ft_strnstr(str + i, check_str, 2) == 0)  
-			{
 				count += 1;
-			}
 		}
 		i++;
 	}
 	if (count > 1)
-		return (0);
-	return (1);
+		return (-1);
+	return (0);
 }
 
 int check_if_tab(char *str, char **tab)
@@ -83,89 +70,53 @@ int check_if_tab(char *str, char **tab)
 	{
 		if (ft_strnstr(tab[i], str, 2) == 0)
 		{
-			if (check_if_doublon (tab[i], str) == 0)
-			{
-				printf("Error: too many %s\n", str);
-				return (-1);
-			}
+			if (check_if_doublon (tab[i], str) == -1)
+				return (printf("Error: too many %s\n", str), -1);
 			count += 1;
 		}
 		i++;
 	}
 	if (count == 0)
-	{
-		printf ("error: missing %s\n", str);
-		return (-1);
-	}
+		return (printf("error: missing %s\n", str), -1);
 	if (count > 1)
-	{
-		printf ("error: too many %s\n", str);
-		return (-1);
-	}
+		return (printf ("error: too many %s\n", str), -1);
 	return (0);
 }
-int	save_path(char *str, t_data *data)
+
+int check_all_path(t_data *data)
+{
+	int check;
+
+	check = 0;
+	if (data->path_c && data->path_ea && data->path_f && 
+		data->path_no && data->path_so && data->path_we)
+			check = 1;
+	return (check);
+}
+
+int	check_doublon_path(t_data *d)
 {
 	int i;
 	int j;
-	int k;
-	int count;
+	char *tab[4];
 	
-	count = 0;
+	tab[0] = d->path_ea;
+	tab[1] = d->path_no;
+	tab[2] = d->path_so;
+	tab[3] = d->path_we;
 	i = 0;
-	j = 0;
-	if (ft_strcmp(str, "NO") == 0)
+	while (i < 3)
 	{
-		while (data->tab[i])
+		j = 0;
+		while (j < 3)
 		{
-			if (ft_strnstr(data->tab[i], str, 2) == 0)
-			{
-				while (data->tab[i][j] == ' ' && data->tab[i][j] != '\0')
-					j++;
-				if (data->tab[i][j] == 'N')
-					j++;
-				if (data->tab[i][j] == 'O')
-					j++;
-				while (data->tab[i][j] == ' '&& data->tab[i][j] != '\0')
-					j++;
-				k = j;
-				while (data->tab[i][j] != ' ' && data->tab[i][j] != '\0')
-					j++;
-				count = j - k;
-				while (data->tab[i][j] == ' ' && data->tab[i][j] != '\0')
-					j++;
-				if (data->tab[i][j] != ' ' && data->tab[i][j] != '\0')
-				{
-					printf("Error: %s: Too many path\n", str);
-					return (-1);
-				}
-				data->path_no = malloc(sizeof(char) * count + 1);
-				data->path_no = ft_strcpy_path(data->path_no, data->tab[i] + k);
-			}
-			i++;
+			if (i != j && ft_strcmp(tab[i], tab[j]) == 0)
+				return (printf("error\ntextures are similar\n"),
+				free_tab(d), -1);
+			j++;
 		}
-		printf ("data->path_no = %s\n", data->path_no);
+		i++;
 	}
-	// else if (ft_strcmp(str, "SO") == 0)
-	// {
-
-
-		
-	// }
-	// else if (ft_strcmp(str, "WE") == 0)
-	// {
-
-
-		
-	// }
-	// else if (ft_strcmp(str, "EA") == 0)
-	// {
-
-
-
-		
-	// }
-
 	return (0);
 }
 
@@ -179,10 +130,20 @@ int	check_tab_doublon (t_data *data)
 	while (data->check_tab[i])
 	{
 		if (check_if_tab(data->check_tab[i], data->tab) == -1)
-			return (0);
+		{
+			free_tab(data);
+			return (-1);
+		}
 		if (save_path(data->check_tab[i], data) == -1)
-			return (0);
+		{
+			free_tab(data);
+			return (-1);
+		}
+		if (check_all_path(data) == 1)
+			data->last_info = data->make_i;
 		i++;   
 	}
-	return (1);
+	if (check_doublon_path(data) == -1)
+		return (-1);
+	return (0);
 }

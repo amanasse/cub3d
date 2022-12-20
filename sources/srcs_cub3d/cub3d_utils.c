@@ -6,38 +6,12 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:45:17 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/19 16:18:34 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/20 16:36:38 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*ft_strcpy_path(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0' && src[i] != ' ')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 void print_tab(char **tab)
 {
@@ -101,17 +75,6 @@ int	ft_strlen_cub3d(char *str)
 			i++;
 	}
 	return (i);
-}
-void	free_tab(t_data *d)
-{
-	int	i;
-
-	i = 0;
-	while (d->tab[i])
-	{
-		free(d->tab[i]);
-		i++;
-	}
 }
 
 int	ft_strcmp(char *s1, char *s2)
