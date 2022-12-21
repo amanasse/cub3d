@@ -6,35 +6,11 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/20 17:36:22 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:30:59 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	check_argv(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	i--;
-	while (str[i] != '.' && i > 0)
-		i--;
-	if (str[i] == '.')
-	{
-		if (ft_strcmp (&str[i], ".cub\0") == 0)
-			return (0);
-		else
-		{
-			write (2, "Error\nthe map isn't a '.cub'\n", 29);
-			return (-1);
-		}
-	}
-	write (2, "Error\nthe map isn't a '.cub'\n", 29);
-	return (-1);
-}
 
 int check_if_doublon(char *str, char *check_str)
 {
@@ -88,8 +64,8 @@ int check_all_path(t_data *data)
 	int check;
 
 	check = 0;
-	if (data->path_c && data->path_ea && data->path_f && 
-		data->path_no && data->path_so && data->path_we)
+	if (data->c.path && data->path.path_ea && data->f.path && 
+		data->path.path_no && data->path.path_so && data->path.path_we)
 			check = 1;
 	return (check);
 }
@@ -100,10 +76,10 @@ int	check_doublon_path(t_data *d)
 	int j;
 	char *tab[4];
 	
-	tab[0] = d->path_ea;
-	tab[1] = d->path_no;
-	tab[2] = d->path_so;
-	tab[3] = d->path_we;
+	tab[0] = d->path.path_ea;
+	tab[1] = d->path.path_no;
+	tab[2] = d->path.path_so;
+	tab[3] = d->path.path_we;
 	i = 0;
 	while (i < 3)
 	{

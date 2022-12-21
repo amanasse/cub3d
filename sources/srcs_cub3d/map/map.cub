@@ -1,10 +1,10 @@
 NO ./sources/srcs_cub3d/texture/a.xpm 
 SO ./sources/srcs_cub3d/texture/b.xpm
 WE ./sources/srcs_cub3d/texture/c.xpm
-EA ./sources/srcs_cub3d/texture/a.xpm
+EA ./sources/srcs_cub3d/texture/ad.xpm
 
-F 64,64,64                 
-C 20,20,50 
+F 64,-64,64                 
+C 20,1,050
 
 
 

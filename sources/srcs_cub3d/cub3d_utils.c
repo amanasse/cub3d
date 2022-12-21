@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:45:17 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/20 16:36:38 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/21 13:36:37 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char    *ft_dup_solong(char *s, int len)
     char    *dup;
 
     j = 0;
-    dup = malloc(sizeof(char) * (len + 2));
+    dup = malloc(sizeof(char) * (len + 1));
     if (dup == NULL)
         return (0);
     while (s[j] && s[j] != '\n')

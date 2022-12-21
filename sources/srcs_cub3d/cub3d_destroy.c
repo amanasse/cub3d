@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:53:33 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/20 16:40:20 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:19:09 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	destroy_mlx(t_data	*d)
 {
 	if (d->mlx_ptr && d->win_ptr)
 	{
-		if (d->no)
-			mlx_destroy_image(d->mlx_ptr, d->no);
-		if (d->so)
-			mlx_destroy_image(d->mlx_ptr, d->so);
-		if (d->ea)
-			mlx_destroy_image(d->mlx_ptr, d->ea);
-		if (d->we)
-			mlx_destroy_image(d->mlx_ptr, d->we);
+		if (d->path.no)
+			mlx_destroy_image(d->mlx_ptr, d->path.no);
+		if (d->path.so)
+			mlx_destroy_image(d->mlx_ptr, d->path.so);
+		if (d->path.ea)
+			mlx_destroy_image(d->mlx_ptr, d->path.ea);
+		if (d->path.we)
+			mlx_destroy_image(d->mlx_ptr, d->path.we);
 	}
 	if (d->win_ptr)
 		mlx_destroy_window(d->mlx_ptr, d->win_ptr);
@@ -46,16 +46,17 @@ void	free_tab(t_data *d)
 		free(d->tab[i]);
 		i++;
 	}
-    if (d->path_so)
-        free (d->path_so);
-    if (d->path_ea)
-        free (d->path_ea);
-    if (d->path_we)
-        free (d->path_we);
-    if (d->path_no)
-        free (d->path_no);
-    if (d->path_c)
-        free (d->path_c);
-    if (d->path_f)
-        free (d->path_f);
+	free (d->tab);
+    if (d->path.path_so)
+        free (d->path.path_so);
+    if (d->path.path_ea)
+        free (d->path.path_ea);
+    if (d->path.path_we)
+        free (d->path.path_we);
+    if (d->path.path_no)
+        free (d->path.path_no);
+    if (d->c.path)
+        free (d->c.path);
+    if (d->f.path)
+        free (d->f.path);
 }

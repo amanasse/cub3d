@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:44:57 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/20 16:59:17 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:18:20 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,23 @@ int	save_path_no_so_we(char *str, t_data *data)
     if (ft_strcmp(str, "NO") == 0)
     {
 	    if (make_path(str, "NO", data) == -1)
-	        return (-1);
-	    data->path_no = malloc(sizeof(char) * data->make_count + 1);
-	    data->path_no = ft_strcpy_path(data->path_no, data->tab[data->make_i] + data->make_k);
+			return (-1);
+	    data->path.path_no = malloc(sizeof(char) * data->make_count + 1);
+	    data->path.path_no = ft_strcpy_path(data->path.path_no, data->tab[data->make_i] + data->make_k);
 	}
 	else if (ft_strcmp(str, "SO") == 0)
 	{	
 		if (make_path(str, "SO", data) == -1)
 			return (-1);
-		data->path_so = malloc(sizeof(char) * data->make_count + 1);
-		data->path_so = ft_strcpy_path(data->path_so, data->tab[data->make_i] + data->make_k);
+		data->path.path_so = malloc(sizeof(char) * data->make_count + 1);
+		data->path.path_so = ft_strcpy_path(data->path.path_so, data->tab[data->make_i] + data->make_k);
 	}
 	else if (ft_strcmp(str, "WE") == 0)
 	{
 		if (make_path(str, "WE", data) == -1)
 			return (-1);
-		data->path_we = malloc(sizeof(char) * data->make_count + 1);
-		data->path_we = ft_strcpy_path(data->path_we, data->tab[data->make_i] + data->make_k);
+		data->path.path_we = malloc(sizeof(char) * data->make_count + 1);
+		data->path.path_we = ft_strcpy_path(data->path.path_we, data->tab[data->make_i] + data->make_k);
 	}
     return (0);
 }
@@ -80,22 +80,22 @@ int	save_path_ea_c_f(char *str, t_data *data)
 	{
 		if (make_path(str, "EA", data) == -1)
 			return (-1);
-		data->path_ea = malloc(sizeof(char) * data->make_count + 1);
-		data->path_ea = ft_strcpy_path(data->path_ea, data->tab[data->make_i] + data->make_k);
+		data->path.path_ea = malloc(sizeof(char) * data->make_count + 1);
+		data->path.path_ea = ft_strcpy_path(data->path.path_ea, data->tab[data->make_i] + data->make_k);
 	}
 	else if (ft_strcmp(str, "C") == 0)
 	{
 		if (make_path(str, "C", data) == -1)
 			return (-1);
-		data->path_c = malloc(sizeof(char) * data->make_count + 1);
-		data->path_c = ft_strcpy_path(data->path_c, data->tab[data->make_i] + data->make_k);
+		data->c.path = malloc(sizeof(char) * data->make_count + 1);
+		data->c.path = ft_strcpy_path(data->c.path, data->tab[data->make_i] + data->make_k);
 	}
 	else if (ft_strcmp(str, "F") == 0)
 	{
 		if (make_path(str, "F", data) == -1)
 			return (-1);
-		data->path_f = malloc(sizeof(char) * data->make_count + 1);
-		data->path_f = ft_strcpy_path(data->path_f, data->tab[data->make_i] + data->make_k);
+		data->f.path = malloc(sizeof(char) * data->make_count + 1);
+		data->f.path = ft_strcpy_path(data->f.path, data->tab[data->make_i] + data->make_k);
 	}
     return (0);
 }

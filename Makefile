@@ -14,7 +14,9 @@ SRCS    = 	cub3d.c\
 			cub3d_utils.c\
 			cub3d_utils_2.c\
 			cub3d_check_errors.c\
+			cub3d_check_errors_2.c\
 			cub3d_make_tab.c\
+			cub3d_make_colors.c\
 			cub3d_init.c\
 			cub3d_destroy.c\
 			cub3d_make_path.c

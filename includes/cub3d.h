@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/20 17:16:21 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:19:39 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,36 @@
 # include "../sources/libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+
+
+typedef struct s_path
+{
+	char	*path_no;
+	char	*path_so;
+	char	*path_we;
+	char	*path_ea;
+	void	*no;
+	void	*ea;
+	void	*so;
+	void	*we;
+}				t_path;
+
+typedef struct s_color
+{
+	char	*path;
+	int		r;
+	int		g;
+	int		b;
+	char	*color_hex;
+    int		color_int;
+}				t_color;
+
 typedef struct s_data
 {
-	char	*tab[1000];
+	t_path  path;
+	t_color c;
+	t_color f;
+	char	**tab;
 	char	*check_tab[7];
 	int		int_tab[6];
 	char	*line;
@@ -27,6 +54,8 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*p;
 	void	*b;
+	int		size_line;
+	int		size_map;
 	int		last_info;
 	int		make_i;
 	int		make_k;
@@ -44,22 +73,16 @@ typedef struct s_data
 	int		h;
 	int		l;
 	int		count;
-	char	*path_no;
-	char	*path_so;
-	char	*path_we;
-	char	*path_ea;
-	char	*path_c;
-	char	*path_f;
-	void	*no;
-	void	*ea;
-	void	*so;
-	void	*we;
 }				t_data;
 
 
 //MAKE TAB**
-int	ft_read_map(t_data *d, char *str);
-int	ft_first_read(t_data *d, char *str);
+int		ft_read_map(t_data *d, char *str);
+int		ft_first_read(t_data *d, char *str);
+int		init_tab(char *arv, t_data *d);
+void	init_tab_line(int fd, char **tab, t_data *d);
+int		size_map(char *arv);
+
 
 //MAKE PATH
 int ft_pass_path (char *str, char *compare);
@@ -76,13 +99,21 @@ int		check_tab_doublon(t_data *data);
 void	init_check_tab(t_data *data);
 int		check_if_tab(char *str, char **tab);
 
-//INIT TAB
+int 	check_colors(t_color *color, t_data *d);
+
+
+//COLORS
+int make_colors(t_color *color, t_data *data);
+void    free_split_tab(char **tab);
+
+//INIT
 int		ft_init_images(t_data *d);
 int		ft_init_struct(t_data *d);
 
 
 //UTILS
 int		ft_strlen_cub3d(char *str);
+char    *ft_dup_solong(char *s, int len);
 void	ft_memset_cub3d(void *s, int c, size_t n);
 int		ft_strcmp(char *s1, char *s2);
 void	free_tab(t_data *d);
