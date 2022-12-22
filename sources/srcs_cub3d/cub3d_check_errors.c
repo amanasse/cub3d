@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 13:32:42 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:26:16 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ int	check_tab_doublon (t_data *data)
 
 	i = 0;
 	init_check_tab(data);
-	print_tab(data->check_tab);
 	while (data->check_tab[i])
 	{
 		if (check_if_tab(data->check_tab[i], data->tab) == -1)

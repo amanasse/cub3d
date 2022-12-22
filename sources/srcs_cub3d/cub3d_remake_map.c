@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 18:17:46 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:04:30 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,53 @@ int	new_map(t_data *data, int j)
 
 	i = data->map.first_line;
 	k = data->map.last_line;
-	// while (i <= k)
-	// {
-		if ((int)ft_strlen(data->tab[i]) < j)
+	while (i <= k)
+	{
+		if ((int)ft_strlen(data->tab[i]) <= j)
 		{
 			tmp = malloc(sizeof(char) * (j + 1));
 			if (tmp == NULL)
 				return (printf("error: malloc"), -1);
-			tmp = ft_strcpy_map(tmp, data->tab[i]);
-			// i++;
-		// }
-		
-	// }	
+			tmp = ft_strcpy_map(tmp, data->tab[i], j);
+			free (data->tab[i]);
+			data->tab[i] = tmp;
+		}
+		i++;
+	}	
 
+	return (0);
+}
+
+int	check_borders(t_data *data)
+{
+	int i;
+	int j;
+	int k;
+	
+	k = 0;
+	i = data->map.first_line;
+	j = data->map.last_line;
+	while (data->tab[i][k])
+	{
+		if (data->tab[i][j] == '0' || data->tab[i][k] == 'N' || data->tab[i][k] == 'W' || data->tab[i][k] == 'E' || data->tab[i][k] == 'S')
+			return ((printf("error\nwrong map: borders"), -1));
+		k++;
+	}
+	k = 0;
+	while (data->tab[j][k])
+	{
+		if (data->tab[j][k] == '0' || data->tab[j][k] == 'N' || data->tab[j][k] == 'W' || data->tab[j][k] == 'E' || data->tab[j][k] == 'S')
+			return ((printf("error\nwrong map: borders"), -1));
+		k++;
+	}
+	i = data->map.first_line;
+	j = data->map.last_line;
+	while (i <= j)
+	{
+		if (data->tab[i][0] == '0' || data->tab[i][0] == 'N' || data->tab[i][0] == 'W' || data->tab[i][0] == 'E' || data->tab[i][0] == 'S')
+				return ((printf("error\nwrong map: borders"), -1));
+		i++;
+	}
 	return (0);
 }
 
@@ -134,12 +168,10 @@ int remake_map(t_data *data)
 	if (check_after_last_line(data) == -1)
 		return (-1);
 	j = count_largest_line(data);
-	printf ("data->map.first_line = %d\n", data->map.first_line);
-	printf ("data->map.last_line = %d\n", data->map.last_line);
-	printf ("j = %d\n", j);
 	if (new_map(data, j) == -1)
-		return (-1);
-	
+		return (free_tab(data), -1);
+	if (check_borders(data) == -1)
+		return (free_tab(data), -1);
 	return (0);
 
 

@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 18:02:18 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:53:02 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int		remake_map(t_data *data);
 int		check_first_line(t_data *data, int j);
 int		check_last_line(t_data *data, int j);
 int		check_map_caracters(char *str, t_map *map);
+int		check_borders(t_data *data);
 
 //INIT
 int		ft_init_images(t_data *d);
@@ -136,11 +137,12 @@ char    *ft_dup_solong(char *s, int len);
 void	ft_memset_cub3d(void *s, int c, size_t n);
 int		ft_strcmp(char *s1, char *s2);
 void	free_tab(t_data *d);
-void	print_tab(char **tab);
+void	print_tab(t_data *data);
+void	print_tab_def(t_data *data);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_strcpy_path(char *dest, char *src);
 char	*ft_strcpy_color(char *dest, char *src);
-char	*ft_strcpy_map(char *dest, char *src);
+char	*ft_strcpy_map(char *dest, char *src, int len);
 
 //DESTROY & FREE
 int		destroy_mlx(t_data	*d);
