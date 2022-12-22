@@ -11,6 +11,7 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC    = 	ft_strlen.c\
+			ft_atoi_color.c\
 			ft_atoi.c\
 			ft_bzero.c\
 			ft_calloc.c\

@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   ft_atoi_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 10:06:49 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 12:45:14 by amanasse         ###   ########.fr       */
+/*   Created: 2022/05/06 15:10:48 by amanasse          #+#    #+#             */
+/*   Updated: 2022/12/22 12:48:26 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int	ft_str_is_numeric(char *str)
+int	ft_atoi_color(char *str)
 {
-	int	i;
+	long int	i;
+	int			j;
+	long int	nb;
 
+	j = 0;
 	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] < 48 || str[i] > 57) && str[i] != ' ')
-			return (0);
+	nb = 0;
+	while (str[j] != '\0')
+		j++;
+	if (str[j - 1] == ' ')
+		j--;
+	while (str[j] == ' ')
+		j--;
+	while (i <= j && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 		i++;
-	}
-	return (1);
+	if (ft_str_is_numeric(&str[i]) == 0)
+		return (-1);
+	while (i <= j && ((str[i] >= 48 && str[i] <= 57) || str[i] == ' '))
+	{
+		if (str[i] == ' ')
+			return (-1);
+		nb = (nb * 10) + (str[i] - 48);
+		i++;
+	}	
+	return (nb);
 }

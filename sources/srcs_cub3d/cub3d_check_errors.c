@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 14:30:59 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:32:42 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int check_all_path(t_data *data)
 	int check;
 
 	check = 0;
-	if (data->c.path && data->path.path_ea && data->f.path && 
+	if (data->c.p && data->path.path_ea && data->f.p && 
 		data->path.path_no && data->path.path_so && data->path.path_we)
 			check = 1;
 	return (check);

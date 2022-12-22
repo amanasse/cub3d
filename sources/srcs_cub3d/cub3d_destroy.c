@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:53:33 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 15:19:09 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:58:53 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	free_tab(t_data *d)
 		i++;
 	}
 	free (d->tab);
-    if (d->path.path_so)
-        free (d->path.path_so);
-    if (d->path.path_ea)
-        free (d->path.path_ea);
-    if (d->path.path_we)
-        free (d->path.path_we);
-    if (d->path.path_no)
-        free (d->path.path_no);
-    if (d->c.path)
-        free (d->c.path);
-    if (d->f.path)
-        free (d->f.path);
+	if (d->path.path_so)
+		free (d->path.path_so);
+	if (d->path.path_ea)
+		free (d->path.path_ea);
+	if (d->path.path_we)
+		free (d->path.path_we);
+	if (d->path.path_no)
+		free (d->path.path_no);
+	if (d->c.p)
+		free (d->c.p);
+	if (d->f.p)
+		free (d->f.p);
 }

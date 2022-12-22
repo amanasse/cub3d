@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:00:20 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 13:37:41 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:27:23 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,48 +83,3 @@ int    init_tab(char *arv, t_data *d)
     close (fd);
     return (0);
 }
-
-
-// int	ft_first_read(t_data *d, char *str)
-// {
-// 	d->fichier = open(str, 0);
-// 	if (d->fichier == -1)
-// 	{
-// 		write (2, "Error\n", 6);
-// 		close (d->fichier);
-// 		return (-1);
-// 	}
-// 	ft_memset_cub3d(d->tab, 0, sizeof(d->tab));
-// 	d->i = 0;
-// 	d->j = 0;
-// 	d->line = get_next_line(d->fichier);
-// 	if (d->line == NULL)
-// 	{
-// 		close (d->fichier);
-// 		free_tab(d);
-// 		write (2, "Error\n", 6);
-// 		return (-1);
-// 	}
-// 	return (1);
-// }
-
-// int	ft_read_map(t_data *d, char *str)
-// {
-// 	if (ft_first_read(d, str) == -1)
-// 		return (-1);
-// 	while (d->line != NULL)
-// 	{
-//         d->tab[d->i] = malloc(sizeof(char) * (ft_strlen_cub3d(d->line) + 1));
-// 		d->tab[d->i] = ft_strcpy(d->tab[d->i], d->line);
-// 		d->j = 0;
-// 		while (d->tab[d->i][d->j] != '\n' && d->j < ft_strlen_cub3d(d->line))
-// 			d->j++;
-// 		d->tab[d->i][d->j] = '\0';
-// 		d->i++;
-// 		free(d->line);
-// 		d->line = get_next_line(d->fichier);
-// 	}
-// 	d->tab[d->i] = NULL;
-// 	close (d->fichier);
-// 	return (0);
-// }

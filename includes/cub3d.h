@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 15:19:39 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:25:19 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ typedef struct s_path
 
 typedef struct s_color
 {
-	char	*path;
+	int		i;
+	int		count;
+	char	*p;
 	int		r;
 	int		g;
 	int		b;
@@ -85,6 +87,8 @@ int		size_map(char *arv);
 
 
 //MAKE PATH
+int	make_path(char *str, char *compare, t_data *d);
+int make_path_2(char *compare, t_data *d, int c, int j);
 int ft_pass_path (char *str, char *compare);
 int check_all_path(t_data *data);
 int	save_path(char *str, t_data *data);
@@ -120,6 +124,7 @@ void	free_tab(t_data *d);
 void	print_tab(char **tab);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_strcpy_path(char *dest, char *src);
+char	*ft_strcpy_color(char *dest, char *src);
 
 //DESTROY & FREE
 int		destroy_mlx(t_data	*d);

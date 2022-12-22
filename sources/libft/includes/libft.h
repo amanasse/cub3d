@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 10:14:30 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/16 15:17:18 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:48:49 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
+int		ft_str_is_numeric(char *str);
 int		ft_atoi(const char *nptr);
+int		ft_atoi_color(char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

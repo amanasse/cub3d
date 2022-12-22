@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:30:08 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 15:28:04 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 13:08:41 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,43 +36,29 @@ int	check_argv(char *str)
 	return (-1);
 }
 
-int check_colors(t_color *color, t_data *d)
+int	check_colors(t_color *c, t_data *d)
 {
-    int i;
-    int count;
-
-    i = 0;
-    count = 0;
-    while (color->path[i])
-    {
-        if ((color->path[i] >= '0' && color->path[i] <= '9') || color->path[i] == ',')
-        {
-            if (color->path[i] == ',')
-            {
-                if((color->path[i + 1] && color->path[i + 1] == ',') || color->path[0] == ',')
-                {
-                    printf("error: color: problem whith ','\n");
-                    free_tab(d);
-                    return(-1);
-                }
-                count += 1;
-            }
-            i++;
-        }
-        else 
-        {
-            printf("error: color: need to be positive & numeric\n");
-            free_tab(d);
-            return(-1);        
-        }
-    }
-    if (count != 2)
-    {
-        {
-            printf("error: color: problem whith ','\n");
-            free_tab(d);
-            return(-1);        
-        }
-    }
-    return (0);
+	c->i = 0;
+	c->count = 0;
+	while (c->p[c->i])
+	{
+		if ((c->p[c->i] >= '0' && c->p[c->i] <= '9')
+			|| c->p[c->i] == ',' || c->p[c->i] == ' ')
+		{
+			if (c->p[c->i] == ',')
+			{
+				if ((c->p[c->i + 1] && c->p[c->i + 1] == ',') || c->p[0] == ',')
+					return (printf("error: color: problem whith ','\n"),
+						free_tab(d), -1);
+				c->count += 1;
+			}
+			c->i++;
+		}
+		else
+			return (printf("error: color: need to be positive & numeric\n"),
+				free_tab(d), -1);
+	}
+	if (c->count != 2)
+		return (printf("error: color: problem whith ','\n"), free_tab(d), -1);
+	return (0);
 }
