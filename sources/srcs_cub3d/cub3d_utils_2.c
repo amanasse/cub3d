@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:20:45 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 11:54:27 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:03:35 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,24 @@ char	*ft_strcpy_path(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
-char	*ft_strcpy_color(char *dest, char *src)
+char	*ft_strcpy_map(char *dest, char *src)
 {
 	int	i;
 
 	i = 0;
 	while (src[i] != '\0')
 	{
-		dest[i] = src[i];
+		if (src[i] == ' ')
+			dest[i] = 'X';
+		else
+			dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';
 	return (dest);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+char	*ft_strcpy_color(char *dest, char *src)
 {
 	int	i;
 
