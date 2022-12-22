@@ -19,7 +19,8 @@ SRCS    = 	cub3d.c\
 			cub3d_make_colors.c\
 			cub3d_init.c\
 			cub3d_destroy.c\
-			cub3d_make_path.c
+			cub3d_make_path.c\
+			cub3d_remake_map.c
 
 DIR_SRC_CUB3D = ./sources/srcs_cub3d/
 

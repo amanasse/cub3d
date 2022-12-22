@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 13:25:19 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:10:21 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 # include "../sources/libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+
+typedef struct s_map
+{
+	int		count;
+	int		first_line;
+	int		last_line;
+}				t_map;
 
 
 typedef struct s_path
@@ -48,6 +55,7 @@ typedef struct s_data
 	t_path  path;
 	t_color c;
 	t_color f;
+	t_map	map;
 	char	**tab;
 	char	*check_tab[7];
 	int		int_tab[6];
@@ -109,6 +117,10 @@ int 	check_colors(t_color *color, t_data *d);
 //COLORS
 int make_colors(t_color *color, t_data *data);
 void    free_split_tab(char **tab);
+
+//MAP
+int		remake_map(t_data *data);
+int		check_map_caracters(char *str, t_map *map);
 
 //INIT
 int		ft_init_images(t_data *d);

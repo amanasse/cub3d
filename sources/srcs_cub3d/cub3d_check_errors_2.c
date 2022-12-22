@@ -6,11 +6,35 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:30:08 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/22 13:08:41 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:03:51 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int check_map_caracters(char *str, t_map *map)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '1' && str[i] != '0' && str[i] != 'N' && str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
+		{
+			printf("error\nwrong map");
+			return (-1);
+		}
+		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
+			map->count += 1;
+		if (map->count > 1)
+		{
+			printf("error\nwrong map");	
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	check_argv(char *str)
 {

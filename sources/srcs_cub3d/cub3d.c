@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:33:14 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/21 15:22:33 by amanasse         ###   ########.fr       */
+/*   Updated: 2022/12/22 14:23:13 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,8 @@ int main(int argc, char **argv)
         return (0);
     if (make_colors(&data.c, &data) == -1 || make_colors(&data.f, &data) == -1)
         return (0);
-    printf("data.c.r = %d\n", data.c.r);
-    printf("data.c.g = %d\n", data.c.g);
-    printf("data.c.b = %d\n", data.c.b);
-    printf("data.f.r = %d\n", data.f.r);
-    printf("data.f.g = %d\n", data.f.g);
-    printf("data.f.b = %d\n", data.f.b);
+    if (remake_map(&data) == -1)
+        return (0);
     // if (ft_init_struct(&data) == -1)
     //     return (0);
     free_tab(&data);
