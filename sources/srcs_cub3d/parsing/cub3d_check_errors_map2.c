@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:25:00 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 15:33:10 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:52:32 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	check_x_in_line(char *str, int j)
 {
 	if (str[j + 1] == 'X')
 	{
-		ft_putstr_fd("error\nwrong map\n", 2);
+		ft_putstr_fd("error\nwrong map4\n", 2);
 		return (-1);
 	}
 	if (str[j - 1] == 'X')
 	{
-		ft_putstr_fd("error\nwrong map\n", 2);
+		ft_putstr_fd("error\nwrong map5\n", 2);
 		return (-1);
 	}
 	return (0);
@@ -31,7 +31,7 @@ int	check_x_in_top_line(char *str, int j)
 {
 	if (str[j] == 'X')
 	{
-		ft_putstr_fd("error\nwrong map\n", 2);
+		ft_putstr_fd("error\nwrong map6\n", 2);
 		return (-1);
 	}
 	return (0);
@@ -41,7 +41,7 @@ int	check_x_in_down_line(char *str, int j)
 {
 	if (str[j] == 'X')
 	{
-		ft_putstr_fd("error\nwrong map\n", 2);
+		ft_putstr_fd("error\nwrong map7\n", 2);
 		return (-1);
 	}
 	return (0);

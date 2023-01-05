@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:44:57 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 14:56:28 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:43:41 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,31 @@ int	make_path(char *str, char *compare, t_data *d)
 int	make_path_color(char *str, char *compare, t_data *d, int c)
 {
 	int	j;
+	int i;
 
 	j = 0;
-	while (d->tab[d->make_i])
+	i = 0;
+	while (d->tab[i])
 	{
-		if (ft_strnstr(d->tab[d->make_i], str, 2) == 0)
+		if (ft_strnstr(d->tab[i], str, 2) == 0)
 		{
-			while (d->tab[d->make_i][j] == ' ' && d->tab[d->make_i][j] != '\0')
+			while (d->tab[i][j] == ' ' && d->tab[i][j] != '\0')
 				j++;
-			while (d->tab[d->make_i][j] == compare[c] && compare[c] != '\0')
+			while (d->tab[i][j] == compare[c] && compare[c] != '\0')
 			{
 				c++;
 				j++;
 			}
-			while (d->tab[d->make_i][j] == ' ' && d->tab[d->make_i][j] != '\0')
+			while (d->tab[i][j] == ' ' && d->tab[i][j] != '\0')
 				j++;
 			d->make_k = j;
-			while (d->tab[d->make_i][j] != '\0')
+			while (d->tab[i][j] != '\0')
 				j++;
-			d->make_count = j - d->make_k;
+			d->make_count = j - d->make_k;	
+			d->make_i = i;
 			return (0);
 		}
-		d->make_i++;
+		i++;
 	}
 	return (0);
 }

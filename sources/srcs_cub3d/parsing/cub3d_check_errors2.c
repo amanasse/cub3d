@@ -22,14 +22,14 @@ int	check_map_caracters(char *str, t_map *map)
 		if (str[i] != ' ' && str[i] != '1' && str[i] != '0' && str[i] != 'N'
 			&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
 		{
-			ft_putstr_fd("error\nwrong map\n", 2);
+			ft_putstr_fd("error\nwrong map1\n", 2);
 			return (-1);
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
 			map->count += 1;
 		if (map->count > 1)
 		{
-			ft_putstr_fd("error\nwrong map\n", 2);
+			ft_putstr_fd("error\nwrong map2\n", 2);
 			return (-1);
 		}
 		i++;
@@ -73,7 +73,7 @@ int	check_colors(t_color *c, t_data *d)
 			if (c->p[c->i] == ',')
 			{
 				if ((c->p[c->i + 1] && c->p[c->i + 1] == ',') || c->p[0] == ',')
-					return (ft_putstr_fd("error: color: problem whith ','\n", 2),
+					return (ft_putstr_fd("error: color: problem with ','\n", 2),
 						free_tab(d), -1);
 				c->count += 1;
 			}

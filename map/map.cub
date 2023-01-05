@@ -1,11 +1,16 @@
-NO ./texture/n.xpm 
-SO ./texture/s.xpm
-WE ./texture/w.xpm
+            SO ./texture/s.xpm
+                 WE ./texture/w.xpm
+
+NO ./texture/n.xpm
+F       150,50,255
+C 0,100,255     
 EA ./texture/e.xpm
 
-F 0,100,          51
-C 51,151,255      
 
+
+
+
+111111
 1111111111111111111111111
 1000000000110000000W00001
 1111111111111111111111111

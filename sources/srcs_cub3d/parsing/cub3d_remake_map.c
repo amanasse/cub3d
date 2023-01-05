@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 15:30:06 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 18:20:39 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,41 @@ int	remake_map2(t_data *data)
 	return (0);
 }
 
+int count_lines(char *str)
+{
+	int j;
+
+	j = 0;
+	while (str[j])
+	{
+		if (str[j] != ' ')
+			return (1);	
+		j++;
+	}
+	return (0);
+}
+
+int check_many_lines(t_data *data)
+{
+	int i;
+	int count;
+
+	count = 0;
+	i = data->map.first_line;
+	while (i > 0)
+	{
+		count += count_lines(data->tab[i]);
+		i--;
+	}
+	if (count > 6)
+	{
+		ft_putstr_fd("error\nwrong map 8\n", 2);
+		free_tab (data);
+		return (-1);
+	}
+	return (0);
+}
+
 int	remake_map(t_data *data)
 {
 	int	j;
@@ -92,8 +127,10 @@ int	remake_map(t_data *data)
 		data->last_info++;
 	}
 	if (data->map.count == 0)
-		return (free_tab(data), ft_putstr_fd("error\nwrong map\n", 2), -1);
+		return (free_tab(data), ft_putstr_fd("error\nwrong map 9\n", 2), -1);
 	if (check_first_line(data, j) == -1)
+		return (-1);
+	if (check_many_lines(data) == -1)
 		return (-1);
 	if (check_last_line(data, j) == -1)
 		return (-1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_remake_map.c                                 :+:      :+:    :+:   */
+/*   cub3d_remake_map_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/04 17:56:51 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:44:33 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int correct_map(t_data *data, int first, int last)
 	data->tab = tab;
 	return (0);
 }
+
 int	remake_map(t_data *data)
 {
 	int	j;
@@ -128,6 +129,7 @@ int	remake_map(t_data *data)
 	}
 	if (check_first_line(data, j) == -1)
 		return (-1);
+
 	if (check_last_line(data, j) == -1)
 		return (-1);
 	if (check_after_last_line(data) == -1)
@@ -139,6 +141,5 @@ int	remake_map(t_data *data)
 		return (free_tab(data), -1);
 	if (correct_map(data, data->map.first_line, data->map.last_line) == -1)
 		return (free_tab(data), -1);
-	// print_tab(data);
 	return (0);
 }

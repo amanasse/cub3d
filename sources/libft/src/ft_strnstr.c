@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:19:58 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/19 16:19:34 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:10:44 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	char	*str1;
 	char	*str2;
-
+	
 	i = 0;
 	str1 = (char *) big;
 	str2 = (char *) little;
@@ -29,8 +29,6 @@ int	ft_strnstr(const char *big, const char *little, size_t len)
 		return (1);
 	while (str1[i] != '\0')
 	{
-		if (i + ft_strlen(str2) > len)
-			return (1);
 		if (ft_strncmp(str1 + i, str2, ft_strlen(str2)) == 0)
 			return (0);
 		i++;
