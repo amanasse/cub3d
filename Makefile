@@ -14,9 +14,9 @@ SRCS    = 	parsing/cub3d.c\
 	parsing/cub3d_utils.c\
 	parsing/cub3d_utils_2.c\
 	parsing/cub3d_check_errors.c\
+	parsing/cub3d_check_errors2.c\
 	parsing/cub3d_check_errors_map.c\
 	parsing/cub3d_check_errors_map2.c\
-	parsing/cub3d_check_errors_2.c\
 	parsing/cub3d_make_tab.c\
 	parsing/cub3d_make_colors.c\
 	parsing/cub3d_init.c\
@@ -24,6 +24,7 @@ SRCS    = 	parsing/cub3d.c\
 	parsing/cub3d_make_path.c\
 	parsing/cub3d_save_path.c\
 	parsing/cub3d_remake_map.c\
+	parsing/cub3d_remake_map2.c\
 	ray-casting/init_minilibx_and_colors.c\
 	ray-casting/handle_events.c\
 	ray-casting/ray_casting_init.c\

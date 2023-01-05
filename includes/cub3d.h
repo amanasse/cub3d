@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 12:31:10 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:35:52 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../sources/libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+# include <errno.h>
 
 typedef struct s_ray
 {
@@ -191,9 +192,6 @@ int		check_x_in_top_line(char *str, int j);
 int		check_x_in_down_line(char *str, int j);
 int		check_x_in_line(char *str, int j);
 
-
-
-
 //COLORS
 int		make_colors(t_color *color, t_data *data);
 void	free_split_tab(char **tab);
@@ -211,6 +209,11 @@ int		check_after_last_line(t_data *data);
 int		check_map_caracters(char *str, t_map *map);
 int		check_borders(t_data *data, int i, int j, int k);
 void	set_player_info(t_data *data);
+
+char	**make_new_tab2(t_data *data, int first, int last);
+char	**make_new_tab3(char **tab, t_data *data, int first, int last);
+char	*make_last_line(char *str, t_data *data);
+int		correct_map(t_data *data, int first, int last);
 
 //UTILS
 int		ft_strlen_cub3d(char *str);

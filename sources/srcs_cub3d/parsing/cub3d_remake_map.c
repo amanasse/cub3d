@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 12:27:46 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:30:06 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	new_map(t_data *data, int j)
 		{
 			tmp = malloc(sizeof(char) * (j + 2));
 			if (tmp == NULL)
-				return (printf("error: malloc"), -1);
+				return (-1);
 			tmp = ft_strcpy_map(tmp, data->tab[i], j);
 			free (data->tab[i]);
 			data->tab[i] = tmp;
@@ -63,59 +63,19 @@ int	new_map(t_data *data, int j)
 	return (0);
 }
 
-int correct_map(t_data *data, int first, int last)
+int	remake_map2(t_data *data)
 {
-	char	**tab;
-	char 	*tmp;
-	int 	i;
-	int 	k;
+	int	j;
 
-	k = 0;
-	i = 0;
-	tab = malloc(sizeof(char *) * (last - first + 4));
-	if (tab == NULL)
-		return(free_tab(data), -1);
-	printf("data->map.largest_line = %d\n", data->map.largest_line);
-	tab[0] = malloc(sizeof(char) * data->map.largest_line + 3);
-	if (tab[0] == NULL)
+	j = count_largest_line(data);
+	if (new_map(data, j) == -1)
 		return (free_tab(data), -1);
-	while (i < data->map.largest_line + 1)
-	{
-		tab[0][k] = 'X';
-		i++;
-		k++;
-	}
-	tab[0][k] = '\0';
-	i = 1;
-	while (first <= last)
-	{
-		tmp = malloc(sizeof(char) * data->map.largest_line + 3);
-		if (tmp == NULL)
-			return (free_tab(data), -1);
-		tmp = ft_strcpy_color(tmp, data->tab[first]);
-		tab[i] = tmp;
-		i++;
-		first++;
-	}
-	tab[i] = malloc(sizeof(char) * data->map.largest_line + 3);
-	if (tab[i] == NULL)
+	if (check_borders(data, data->map.first_line, data->map.last_line, 0) == -1)
 		return (free_tab(data), -1);
-	k = 0;
-	while (k < data->map.largest_line + 1)
-	{
-		tab[i][k] = 'X';
-		k++;
-	}
-	tab[i][k] = '\0';
-	tab[++i] = NULL;
-	i = 0;
-	while (data->tab[i])
-	{
-		free(data->tab[i]);
-		i++;
-	}
-	free(data->tab);
-	data->tab = tab;
+	if (correct_map(data, data->map.first_line, data->map.last_line) == -1)
+		return (free_tab(data), -1);
+	if (check_zero(data) == -1)
+		return (free_tab(data), -1);
 	return (0);
 }
 
@@ -131,21 +91,15 @@ int	remake_map(t_data *data)
 			return (free_tab(data), -1);
 		data->last_info++;
 	}
+	if (data->map.count == 0)
+		return (free_tab(data), ft_putstr_fd("error\nwrong map\n", 2), -1);
 	if (check_first_line(data, j) == -1)
 		return (-1);
 	if (check_last_line(data, j) == -1)
 		return (-1);
 	if (check_after_last_line(data) == -1)
 		return (-1);
-	j = count_largest_line(data);
-	if (new_map(data, j) == -1)
-		return (free_tab(data), -1);
-	if (check_borders(data, data->map.first_line, data->map.last_line, 0) == -1)
-		return (free_tab(data), -1);
-	if (correct_map(data, data->map.first_line, data->map.last_line) == -1)
-		return (free_tab(data), -1);
-	if (check_zero(data) == -1)
-		return (free_tab(data), -1);
-	print_tab(data);
+	if (remake_map2(data) == -1)
+		return (-1);
 	return (0);
 }

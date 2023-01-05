@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_check_errors_2.c                             :+:      :+:    :+:   */
+/*   cub3d_check_errors2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:30:08 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/02 11:59:38 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:47:43 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	check_map_caracters(char *str, t_map *map)
 		if (str[i] != ' ' && str[i] != '1' && str[i] != '0' && str[i] != 'N'
 			&& str[i] != 'S' && str[i] != 'E' && str[i] != 'W')
 		{
-			printf("error\nwrong map");
+			ft_putstr_fd("error\nwrong map\n", 2);
 			return (-1);
 		}
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
 			map->count += 1;
 		if (map->count > 1)
 		{
-			printf("error\nwrong map");
+			ft_putstr_fd("error\nwrong map\n", 2);
 			return (-1);
 		}
 		i++;
@@ -73,17 +73,17 @@ int	check_colors(t_color *c, t_data *d)
 			if (c->p[c->i] == ',')
 			{
 				if ((c->p[c->i + 1] && c->p[c->i + 1] == ',') || c->p[0] == ',')
-					return (printf("error: color: problem whith ','\n"),
+					return (ft_putstr_fd("error: color: problem whith ','\n", 2),
 						free_tab(d), -1);
 				c->count += 1;
 			}
 			c->i++;
 		}
 		else
-			return (printf("error: color: need to be positive & numeric\n"),
+			return (ft_putstr_fd("error\ncolor\n", 2),
 				free_tab(d), -1);
 	}
 	if (c->count != 2)
-		return (printf("error: color: problem whith ','\n"), free_tab(d), -1);
+		return (ft_putstr_fd("error\ncolor: ','\n", 2), free_tab(d), -1);
 	return (0);
 }

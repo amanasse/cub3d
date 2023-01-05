@@ -6,52 +6,52 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:25:00 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 12:35:34 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:33:10 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_x_in_line(char *str, int j)
+int	check_x_in_line(char *str, int j)
 {
 	if (str[j + 1] == 'X')
 	{
-		printf("error\nwrong map3\n");
+		ft_putstr_fd("error\nwrong map\n", 2);
 		return (-1);
 	}
 	if (str[j - 1] == 'X')
 	{
-		printf("error\nwrong map3\n");
+		ft_putstr_fd("error\nwrong map\n", 2);
 		return (-1);
 	}
 	return (0);
 }
 
-int check_x_in_top_line(char *str, int j)
+int	check_x_in_top_line(char *str, int j)
 {
 	if (str[j] == 'X')
 	{
-		printf("error\nwrong map4\n");
+		ft_putstr_fd("error\nwrong map\n", 2);
 		return (-1);
 	}
 	return (0);
 }
 
-int check_x_in_down_line(char *str, int j)
+int	check_x_in_down_line(char *str, int j)
 {
 	if (str[j] == 'X')
 	{
-		printf("error\nwrong map5\n");
+		ft_putstr_fd("error\nwrong map\n", 2);
 		return (-1);
 	}
 	return (0);
 }
 
-int check_zero(t_data *data)
+int	check_zero(t_data *data)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (data->tab[i])
 	{
