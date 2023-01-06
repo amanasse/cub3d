@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:00:20 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/04 15:45:59 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:43:24 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,24 @@ int	init_tab(char *arv, t_data *d)
 	}
 	d->tab = tab;
 	close (fd);
+	return (0);
+}
+
+int	save_last_info(t_data *data)
+{
+	int	j;
+
+	while (data->tab[data->make_i])
+	{
+		j = 0;
+		while (data->tab[data->make_i][j] == ' ')
+			j++;
+		if (data->tab[data->make_i][j] == '1')
+		{
+			data->last_info = data->make_i - 1;
+			return (1);
+		}
+		data->make_i++;
+	}
 	return (0);
 }

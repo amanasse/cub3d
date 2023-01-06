@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:28:49 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 15:30:11 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:42:30 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,21 @@ int	correct_map(t_data *data, int first, int last)
 	}
 	free(data->tab);
 	data->tab = tab;
+	return (0);
+}
+
+int	remake_map2(t_data *data)
+{
+	int	j;
+
+	j = count_largest_line(data);
+	if (new_map(data, j) == -1)
+		return (free_tab(data), -1);
+	if (check_borders(data, data->map.first_line, data->map.last_line, 0) == -1)
+		return (free_tab(data), -1);
+	if (correct_map(data, data->map.first_line, data->map.last_line) == -1)
+		return (free_tab(data), -1);
+	if (check_zero(data) == -1)
+		return (free_tab(data), -1);
 	return (0);
 }

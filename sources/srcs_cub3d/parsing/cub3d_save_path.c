@@ -6,11 +6,35 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:11:29 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/05 16:26:14 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:33:29 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	make_we(char *str, t_data *data)
+{
+	if (make_path(str, "WE", data) == -1)
+		return (-1);
+	data->path.path_we = malloc(sizeof(char) * data->make_count + 1);
+	if (data->path.path_we == NULL)
+		return (-1);
+	data->path.path_we = ft_strcpy_path(data->path.path_we,
+			data->tab[data->make_i] + data->make_k);
+	return (0);
+}
+
+int	make_ea(char *str, t_data *data)
+{
+	if (make_path(str, "EA", data) == -1)
+		return (-1);
+	data->path.path_ea = malloc(sizeof(char) * data->make_count + 1);
+	if (data->path.path_ea == NULL)
+		return (-1);
+	data->path.path_ea = ft_strcpy_path(data->path.path_ea,
+			data->tab[data->make_i] + data->make_k);
+	return (0);
+}
 
 int	save_path_no_so_we(char *str, t_data *data)
 {
@@ -35,30 +59,14 @@ int	save_path_no_so_we(char *str, t_data *data)
 				data->tab[data->make_i] + data->make_k);
 	}
 	else if (ft_strcmp(str, "WE") == 0)
-	{
-		if (make_path(str, "WE", data) == -1)
-			return (-1);
-		data->path.path_we = malloc(sizeof(char) * data->make_count + 1);
-		if (data->path.path_we == NULL)
-			return (-1);
-		data->path.path_we = ft_strcpy_path(data->path.path_we,
-				data->tab[data->make_i] + data->make_k);
-	}
+		return (make_we(str, data));
 	return (0);
 }
 
 int	save_path_ea_c_f(char *str, t_data *data)
 {
 	if (ft_strcmp(str, "EA") == 0)
-	{
-		if (make_path(str, "EA", data) == -1)
-			return (-1);
-		data->path.path_ea = malloc(sizeof(char) * data->make_count + 1);
-		if (data->path.path_ea == NULL)
-			return (-1);
-		data->path.path_ea = ft_strcpy_path(data->path.path_ea,
-				data->tab[data->make_i] + data->make_k);
-	}
+		return (make_ea(str, data));
 	else if (ft_strcmp(str, "C") == 0)
 	{
 		if (make_path_color(str, "C", data, 0) == -1)

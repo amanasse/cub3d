@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 15:35:52 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:42:39 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*p;
 	void	*b;
+	int		c_i;
+	int		c_j;
 	int		sizex;
 	int		sizey;
 	int		rx;
@@ -203,6 +205,9 @@ int		ft_init_struct(t_data *d);
 //MAP
 int		count_largest_line(t_data *data);
 int		remake_map(t_data *data);
+int		remake_map2(t_data *data);
+int		save_last_info(t_data *data);
+int		new_map(t_data *data, int j);
 int		check_first_line(t_data *data, int j);
 int		check_last_line(t_data *data, int j);
 int		check_after_last_line(t_data *data);

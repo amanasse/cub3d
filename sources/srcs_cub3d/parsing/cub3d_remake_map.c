@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 18:20:39 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:42:23 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,40 +63,24 @@ int	new_map(t_data *data, int j)
 	return (0);
 }
 
-int	remake_map2(t_data *data)
+int	count_lines(char *str)
 {
 	int	j;
-
-	j = count_largest_line(data);
-	if (new_map(data, j) == -1)
-		return (free_tab(data), -1);
-	if (check_borders(data, data->map.first_line, data->map.last_line, 0) == -1)
-		return (free_tab(data), -1);
-	if (correct_map(data, data->map.first_line, data->map.last_line) == -1)
-		return (free_tab(data), -1);
-	if (check_zero(data) == -1)
-		return (free_tab(data), -1);
-	return (0);
-}
-
-int count_lines(char *str)
-{
-	int j;
 
 	j = 0;
 	while (str[j])
 	{
 		if (str[j] != ' ')
-			return (1);	
+			return (1);
 		j++;
 	}
 	return (0);
 }
 
-int check_many_lines(t_data *data)
+int	check_many_lines(t_data *data)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = data->map.first_line;

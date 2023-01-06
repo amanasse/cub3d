@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:44:57 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 17:43:41 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:22:26 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,32 +58,29 @@ int	make_path(char *str, char *compare, t_data *d)
 
 int	make_path_color(char *str, char *compare, t_data *d, int c)
 {
-	int	j;
-	int i;
-
-	j = 0;
-	i = 0;
-	while (d->tab[i])
+	d->c_i = 0;
+	d->c_j = 0;
+	while (d->tab[d->c_i])
 	{
-		if (ft_strnstr(d->tab[i], str, 2) == 0)
+		if (ft_strnstr(d->tab[d->c_i], str, (int)ft_strlen(str)) == 0)
 		{
-			while (d->tab[i][j] == ' ' && d->tab[i][j] != '\0')
-				j++;
-			while (d->tab[i][j] == compare[c] && compare[c] != '\0')
+			while (d->tab[d->c_i][d->c_j] == ' '
+				&& d->tab[d->c_i][d->c_j] != '\0')
+					d->c_j++;
+			while (d->tab[d->c_i][d->c_j] == compare[c] && compare[c] != '\0')
 			{
 				c++;
-				j++;
+				d->c_j++;
 			}
-			while (d->tab[i][j] == ' ' && d->tab[i][j] != '\0')
-				j++;
-			d->make_k = j;
-			while (d->tab[i][j] != '\0')
-				j++;
-			d->make_count = j - d->make_k;	
-			d->make_i = i;
-			return (0);
+			while (d->tab[d->c_i][d->c_j] == ' '
+				&& d->tab[d->c_i][d->c_j] != '\0')
+					d->c_j++;
+			d->make_k = d->c_j;
+			while (d->tab[d->c_i][d->c_j] != '\0')
+				d->c_j++;
+			return (d->make_count = d->c_j - d->make_k, d->make_i = d->c_i, 0);
 		}
-		i++;
+		d->c_i++;
 	}
 	return (0);
 }

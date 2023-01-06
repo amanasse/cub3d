@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:23:28 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/05 17:52:12 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:45:55 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ int	check_after_last_line(t_data *data)
 		{
 			if (data->tab[i][k] != '1' || data->tab[i][k] != ' '
 					|| data->tab[i][k] != '\0')
-				return (ft_putstr_fd("error\nwrong map3", 2), free_tab(data), -1);
+			{
+				ft_putstr_fd("error\nwrong map3", 2);
+				return (free_tab(data), -1);
+			}
 			k++;
 		}
 		i++;

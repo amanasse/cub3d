@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 19:02:44 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:41:36 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	check_if_tab(char *str, char **tab)
 		}
 		i++;
 	}
-	printf("**********************count = %d\n", count);
 	if (count == 0)
 		return (ft_putstr_fd("error\nmissing\n", 2), -1);
 	if (count > 1)
@@ -100,37 +99,19 @@ int	check_doublon_path(t_data *d)
 int	check_tab_doublon(t_data *data)
 {
 	int	i;
-	int j;
 
 	i = 0;
 	init_check_tab(data);
 	while (data->check_tab[i])
 	{
-		print_tab(data);
 		if (check_if_tab(data->check_tab[i], data->tab) == -1)
-		{
-			free_tab(data);
-			return (-1);
-		}
+			return (free_tab(data), -1);
 		if (save_path(data->check_tab[i], data) == -1)
-		{
-			free_tab(data);
-			return (-1);
-		}
+			return (free_tab(data), -1);
 		if (check_all_path(data) == 1)
 		{
-			while (data->tab[data->make_i])
-			{
-				j = 0;
-				while(data->tab[data->make_i][j] == ' ')
-					j++;
-				if(data->tab[data->make_i][j] == '1')
-				{
-					data->last_info = data->make_i - 1;
-					break;
-				}
-				data->make_i++;
-			}
+			if (save_last_info(data) == 1)
+				break ;
 		}
 		i++;
 	}
