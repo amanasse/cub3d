@@ -6,51 +6,54 @@
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:36:24 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/04 15:28:23 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:50:40 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	get_textures2(t_data *d)
+int	get_textures2(t_data *d)
 {
 	d->tex[2].img.mlx_img = mlx_xpm_file_to_image(d->mlx_ptr, d->path.path_we,
 			&d->tex[2].width, &d->tex[2].height);
 	if (!d->tex[2].img.mlx_img)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[2].img.addr = (int *)mlx_get_data_addr(d->tex[2].img.mlx_img,
 			&d->tex[2].img.bpp, &d->tex[2].img.line_len, &d->tex[2].img.endian);
 	if (!d->tex[2].img.addr)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[3].img.mlx_img = mlx_xpm_file_to_image(d->mlx_ptr, d->path.path_ea,
 			&d->tex[3].width, &d->tex[3].height);
 	if (!d->tex[3].img.mlx_img)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[3].img.addr = (int *)mlx_get_data_addr(d->tex[3].img.mlx_img,
 			&d->tex[3].img.bpp, &d->tex[3].img.line_len, &d->tex[3].img.endian);
 	if (!d->tex[3].img.addr)
-		ft_close(d);
+		return (ft_close(d), -1);
+	return (0);
 }
 
-void	get_textures1(t_data *d)
+int	get_textures1(t_data *d)
 {
 	d->tex[0].img.mlx_img = mlx_xpm_file_to_image(d->mlx_ptr, d->path.path_no,
 			&d->tex[0].width, &d->tex[0].height);
 	if (!d->tex[0].img.mlx_img)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[0].img.addr = (int *)mlx_get_data_addr(d->tex[0].img.mlx_img,
 			&d->tex[0].img.bpp, &d->tex[0].img.line_len, &d->tex[0].img.endian);
 	if (!d->tex[0].img.addr)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[1].img.mlx_img = mlx_xpm_file_to_image(d->mlx_ptr, d->path.path_so,
 			&d->tex[1].width, &d->tex[1].height);
 	if (!d->tex[1].img.mlx_img)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->tex[1].img.addr = (int *)mlx_get_data_addr(d->tex[1].img.mlx_img,
 			&d->tex[1].img.bpp, &d->tex[1].img.line_len, &d->tex[1].img.endian);
 	if (!d->tex[1].img.addr)
-		ft_close(d);
-	get_textures2(d);
+		return (ft_close(d), -1);
+	if (get_textures2(d) == -1)
+		return (-1);
+	return (0);
 }
 
 void	set_texture_num(t_data *d, t_img *img)
@@ -79,17 +82,17 @@ void	set_texture_num(t_data *d, t_img *img)
 	}
 }
 
-void	draw_ceiling_floor(t_data *d, int x, int y)
+int	draw_ceiling_floor(t_data *d, int x, int y)
 {
 	if (d->img.mlx_img != NULL)
 		mlx_destroy_image(d->mlx_ptr, d->img.mlx_img);
 	d->img.mlx_img = mlx_new_image(d->mlx_ptr, d->rx, d->ry);
 	if (d->img.mlx_img == NULL)
-		ft_close(d);
+		return (ft_close(d), -1);
 	d->img.addr = (int *)mlx_get_data_addr(d->img.mlx_img, &d->img.bpp,
 			&d->img.line_len, &d->img.endian);
 	if (d->img.addr == NULL)
-		ft_close(d);
+		return (ft_close(d), -1);
 	while (++y < d->ry / 2)
 	{
 		x = -1;
@@ -103,6 +106,7 @@ void	draw_ceiling_floor(t_data *d, int x, int y)
 			d->img.addr[y * d->img.line_len / 4 + x] = d->f.color_int;
 		y++;
 	}
+	return (0);
 }
 
 void	draw(t_data *d, int i)

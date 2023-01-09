@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 15:10:48 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/04 10:45:30 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:03:27 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_atoi_color(char *str)
 	j = 0;
 	i = 0;
 	nb = 0;
+	if (str == NULL)
+		return (-1);
 	while (str[j] != '\0')
 		j++;
 	if (str[j - 1] == ' ')
@@ -35,6 +37,6 @@ int	ft_atoi_color(char *str)
 			return (-1);
 		nb = (nb * 10) + (str[i] - 48);
 		i++;
-	}	
+	}
 	return (nb);
 }

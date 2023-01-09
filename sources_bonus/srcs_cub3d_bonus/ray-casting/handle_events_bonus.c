@@ -17,20 +17,20 @@ void	move_forward_back(t_data *d, int key)
 	if (key == UP_W)
 	{
 		if (d->tab[(int)(d->pos_y + d->ray.dir_y)][(int)d->pos_x] != '1'
-			&& d->tab[(int)(d->pos_y + d->ray.dir_y)][(int)d->pos_x] != 'X')			
-			d->pos_y += d->ray.dir_y / 2;
+			&& d->tab[(int)(d->pos_y + d->ray.dir_y)][(int)d->pos_x] != 'X')
+			d->pos_y += d->ray.dir_y / 4;
 		if (d->tab[(int)d->pos_y][(int)(d->pos_x + d->ray.dir_x)] != '1'
 			&& d->tab[(int)d->pos_y][(int)(d->pos_x + d->ray.dir_x)] != 'X')
-			d->pos_x += d->ray.dir_x / 2;
+			d->pos_x += d->ray.dir_x / 4;
 	}
 	else if (key == DOWN_S)
 	{
 		if (d->tab[(int)(d->pos_y - d->ray.dir_y)][(int)d->pos_x] != '1'
 			&& d->tab[(int)(d->pos_y - d->ray.dir_y)][(int)d->pos_x] != 'X')
-			d->pos_y -= d->ray.dir_y / 2;
+			d->pos_y -= d->ray.dir_y / 4;
 		if (d->tab[(int)d->pos_y][(int)(d->pos_x - d->ray.dir_x)] != '1'
 			&& d->tab[(int)d->pos_y][(int)(d->pos_x - d->ray.dir_x)] != 'X')
-			d->pos_x -= d->ray.dir_x / 2;
+			d->pos_x -= d->ray.dir_x / 4;
 	}
 }
 
@@ -38,17 +38,21 @@ void	move_left_right(t_data *d, int key)
 {
 	if (key == LEFT_A)
 	{
-		if (d->tab[(int)d->pos_y][(int)(d->pos_x - d->ray.dir_y)] != '1')
-			d->pos_x -= d->ray.dir_y / 2;
-		if (d->tab[(int)(d->pos_y + d->ray.dir_x)][(int)d->pos_x] != '1')
-			d->pos_y += d->ray.dir_x / 2;
+		if (d->tab[(int)d->pos_y][(int)(d->pos_x + d->ray.dir_y)] != '1'
+			&& d->tab[(int)d->pos_y][(int)(d->pos_x + d->ray.dir_y)] != 'X')
+			d->pos_x += d->ray.dir_y / 4;
+		if (d->tab[(int)(d->pos_y - d->ray.dir_x)][(int)d->pos_x] != '1'
+			&& d->tab[(int)(d->pos_y - d->ray.dir_x)][(int)d->pos_x] != 'X')
+			d->pos_y -= d->ray.dir_x / 4;
 	}
 	else if (key == RIGHT_D)
 	{
-		if (d->tab[(int)d->pos_y][(int)(d->pos_x + d->ray.dir_y)] != '1')
-			d->pos_x += d->ray.dir_y / 2;
-		if (d->tab[(int)(d->pos_y - d->ray.dir_x)][(int)d->pos_x] != '1')
-			d->pos_y -= d->ray.dir_x / 2;
+		if (d->tab[(int)d->pos_y][(int)(d->pos_x - d->ray.dir_y)] != '1'
+			&& d->tab[(int)d->pos_y][(int)(d->pos_x - d->ray.dir_y)] != 'X')
+			d->pos_x -= d->ray.dir_y / 4;
+		if (d->tab[(int)(d->pos_y + d->ray.dir_x)][(int)d->pos_x] != '1'
+			&& d->tab[(int)(d->pos_y + d->ray.dir_x)][(int)d->pos_x] != 'X')
+			d->pos_y += d->ray.dir_x / 4;
 	}
 }
 
@@ -60,20 +64,20 @@ void	rotate_left_right(t_data *d, int key)
 	if (key == ROTATE_LEFT)
 	{
 		old_dir_x = d->ray.dir_x;
-		d->ray.dir_x = d->ray.dir_x * cos(0.08) - d->ray.dir_y * sin(0.08);
-		d->ray.dir_y = old_dir_x * sin(0.08) + d->ray.dir_y * cos(0.08);
-		old_plan_x = d->ray.plan_x;
-		d->ray.plan_x = d->ray.plan_x * cos(0.08) - d->ray.plan_y * sin(0.08);
-		d->ray.plan_y = old_plan_x * sin(0.08) + d->ray.plan_y * cos(0.08);
-	}
-	else if (key == ROTATE_RIGHT)
-	{
-		old_dir_x = d->ray.dir_x;
 		d->ray.dir_x = d->ray.dir_x * cos(-0.08) - d->ray.dir_y * sin(-0.08);
 		d->ray.dir_y = old_dir_x * sin(-0.08) + d->ray.dir_y * cos(-0.08);
 		old_plan_x = d->ray.plan_x;
 		d->ray.plan_x = d->ray.plan_x * cos(-0.08) - d->ray.plan_y * sin(-0.08);
 		d->ray.plan_y = old_plan_x * sin(-0.08) + d->ray.plan_y * cos(-0.08);
+	}
+	else if (key == ROTATE_RIGHT)
+	{
+		old_dir_x = d->ray.dir_x;
+		d->ray.dir_x = d->ray.dir_x * cos(0.08) - d->ray.dir_y * sin(0.08);
+		d->ray.dir_y = old_dir_x * sin(0.08) + d->ray.dir_y * cos(0.08);
+		old_plan_x = d->ray.plan_x;
+		d->ray.plan_x = d->ray.plan_x * cos(0.08) - d->ray.plan_y * sin(0.08);
+		d->ray.plan_y = old_plan_x * sin(0.08) + d->ray.plan_y * cos(0.08);
 	}
 }
 
@@ -85,10 +89,6 @@ int	deal_key(int key, t_data *d)
 	if (key == ESC)
 		ft_close(d);
 	draw_ceiling_floor(d, -1, -1);
-	// printf("*********\npos_x: %d\npos_y: %d\n\n", (int)(d->pos_x), (int)(d->pos_y));
-	// printf("largest line: %d\n", d->map.largest_line);
-	// printf("first line: %d\n", d->map.first_line);
-	// printf("last line: %d\n\n", d->map.last_line);
 	ray_casting(d);
 	return (0);
 }

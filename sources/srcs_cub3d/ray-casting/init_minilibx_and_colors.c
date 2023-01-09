@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minilibx_and_colors.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:17:28 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/04 13:23:45 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:02:16 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_putnbr_base_x(int nb, char *color)
 		ft_print_color(color, nb);
 }
 
-void	conversion_colors(t_color *color)
+int	conversion_colors(t_color *color)
 {
 	char	*temp;
 
@@ -51,19 +51,19 @@ void	conversion_colors(t_color *color)
 		color->b_hex[0] = '0';
 	ft_putnbr_base_x(color->b, color->b_hex);
 	temp = ft_strjoin(color->r_hex, color->g_hex);
+	if (temp == NULL)
+		return (ft_putstr_fd("Error\nProblem malloc\n", 2), -1);
 	color->color_hex = ft_strjoin(temp, color->b_hex);
 	color->color_int = ft_atoi_base(color->color_hex, 16);
 	free(color->color_hex);
 	free(temp);
+	return (0);
 }
 
-void	init_minilibx(t_data *d)
+int	init_minilibx(t_data *d)
 {
-	d->mlx_ptr = mlx_init();
-	if (!d->mlx_ptr)
-		return ;
 	if (ft_init_struct(d) == -1)
-		return ;
+		return (ft_close(d), -1);
 	d->rx = 800;
 	d->ry = 600;
 	mlx_get_screen_size(d->mlx_ptr, &d->sizex, &d->sizey);
@@ -73,12 +73,17 @@ void	init_minilibx(t_data *d)
 		d->ry = d->sizey;
 	d->win_ptr = mlx_new_window(d->mlx_ptr, d->rx, d->ry, "cub3D");
 	if (!d->win_ptr)
-		return ;
+		return (ft_putstr_fd("Error\nProblem window\n", 2), ft_close(d), -1);
 	set_player_info(d);
-	conversion_colors(&d->c);
-	conversion_colors(&d->f);
+	if (conversion_colors(&d->c) == -1)
+		return (ft_close(d), -1);
+	if (conversion_colors(&d->f) == -1)
+		return (ft_close(d), -1);
 	init_vectors(d);
-	draw_ceiling_floor(d, -1, -1);
-	get_textures1(d);
+	if (draw_ceiling_floor(d, -1, -1) == -1)
+		return (-1);
+	if (get_textures1(d) == -1)
+		return (-1);
 	ray_casting(d);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_check_errors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 10:41:36 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:39:28 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,15 @@ int	check_if_tab(char *str, char **tab)
 		if (ft_strnstr(tab[i], str, ft_strlen(str)) == 0)
 		{
 			if (check_if_doublon (tab[i], str) == -1)
-				return (ft_putstr_fd("error\ndoublon\n", 2), -1);
+				return (ft_putstr_fd("Error\nSame element\n", 2), -1);
 			count += 1;
 		}
 		i++;
 	}
 	if (count == 0)
-		return (ft_putstr_fd("error\nmissing\n", 2), -1);
+		return (ft_putstr_fd("Error\nMissing element\n", 2), -1);
 	if (count > 1)
-		return (ft_putstr_fd ("error\ntoo much\n", 2), -1);
+		return (ft_putstr_fd ("Error\nToo many elements\n", 2), -1);
 	return (0);
 }
 
@@ -87,7 +87,7 @@ int	check_doublon_path(t_data *d)
 		while (j < 3)
 		{
 			if (i != j && ft_strcmp(tab[i], tab[j]) == 0)
-				return (ft_putstr_fd("error\ntextures are similar\n", 2),
+				return (ft_putstr_fd("Error\nTextures are similar\n", 2),
 					free_tab(d), -1);
 			j++;
 		}

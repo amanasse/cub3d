@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_make_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 16:44:57 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 10:22:26 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:41:02 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	make_path(char *str, char *compare, t_data *d)
 		if (ft_strnstr(d->tab[d->make_i], str, 2) == 0)
 		{
 			if (make_path_2(compare, d, c, j) == -1)
-				return (ft_putstr_fd("error\ntoo many path\n", 2), -1);
+				return (ft_putstr_fd("Error\nToo many paths\n", 2), -1);
 			return (0);
 		}
 		d->make_i++;

@@ -10,7 +10,7 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS    = 	parsing/cub3d.c\
+SRCS    =	parsing/cub3d.c\
 	parsing/cub3d_utils.c\
 	parsing/cub3d_utils_2.c\
 	parsing/cub3d_check_errors.c\
@@ -32,13 +32,13 @@ SRCS    = 	parsing/cub3d.c\
 	ray-casting/ray_casting_draw.c\
 	ray-casting/ft_close_all.c
 
-SRCS_BONUS	= 	parsing/cub3d_bonus.c\
+SRCS_BONUS	=	parsing/cub3d_bonus.c\
 	parsing/cub3d_utils_bonus.c\
 	parsing/cub3d_utils_2_bonus.c\
 	parsing/cub3d_check_errors_bonus.c\
+	parsing/cub3d_check_errors2_bonus.c\
 	parsing/cub3d_check_errors_map_bonus.c\
 	parsing/cub3d_check_errors_map2_bonus.c\
-	parsing/cub3d_check_errors_2_bonus.c\
 	parsing/cub3d_make_tab_bonus.c\
 	parsing/cub3d_make_colors_bonus.c\
 	parsing/cub3d_init_bonus.c\
@@ -46,6 +46,7 @@ SRCS_BONUS	= 	parsing/cub3d_bonus.c\
 	parsing/cub3d_make_path_bonus.c\
 	parsing/cub3d_save_path_bonus.c\
 	parsing/cub3d_remake_map_bonus.c\
+	parsing/cub3d_remake_map2_bonus.c\
 	ray-casting/init_minilibx_and_colors_bonus.c\
 	ray-casting/handle_events_bonus.c\
 	ray-casting/ray_casting_init_bonus.c\
@@ -69,8 +70,8 @@ DEPS = $(addprefix $(DIR_OBJ), $(DEP))
 DEPS_BONUS = $(addprefix $(DIR_OBJ_BONUS), $(DEP_BONUS))
 
 LMLX	= -L minilibx-linux -lmlx -lXext -lX11 -lm
-NAME = cub3d
-NAME_BONUS = cub3d_bonus
+NAME = cub3D
+NAME_BONUS = cub3D_bonus
 
 HEADERS	= -I includes minilibx-linux
 CC		= gcc
@@ -79,30 +80,30 @@ CFLAGS	= -MMD -Wall -Wextra -Werror
 ${NAME} :	${OBJS}
 			@make -C ./sources/libft
 			@make -C minilibx-linux
-			@echo "$(GRAY)cub3d compiled!$(DEF_COLOR)"
+			@echo "$(GRAY)cub3D compiled!$(DEF_COLOR)"
 			@${CC} ${CFLAGS} ${OBJS} ./sources/libft/libft.a -o ${NAME} ${LMLX}
 
 ${NAME_BONUS} :	${OBJS_BONUS}
 			@make -C ./sources_bonus/libft
 			@make -C minilibx-linux
-			@echo "$(BLUE)cub3d bonus compiled!$(DEF_COLOR)"
+			@echo "$(BLUE)cub3D bonus compiled!$(DEF_COLOR)"
 			@${CC} ${CFLAGS} ${OBJS_BONUS} ./sources_bonus/libft/libft.a -o ${NAME_BONUS} ${LMLX}
 
-all :		cub3d cub3d_bonus
+all :		cub3D cub3D_bonus
 
-bonus :		cub3d_bonus
+bonus :		cub3D_bonus
 
 clean:
 			@rm -f ${OBJS} ${DEPS} 
-			@echo "$(GRAY)cub3d cleaned$(DEF_COLOR)"
+			@echo "$(GRAY)cub3D cleaned$(DEF_COLOR)"
 			@rm -f ${OBJS_BONUS} ${DEPS_BONUS}
-			@echo "$(BLUE)cub3d bonus cleaned$(DEF_COLOR)"
+			@echo "$(BLUE)cub3D bonus cleaned$(DEF_COLOR)"
 
 fclean:		clean
 			@make -C ./sources/libft fclean
 			@make -C minilibx-linux clean
-			@rm -f cub3d
-			@rm -f cub3d_bonus
+			@rm -f cub3D
+			@rm -f cub3D_bonus
 
 re:			fclean 
 			make all

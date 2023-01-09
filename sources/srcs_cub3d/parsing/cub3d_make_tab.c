@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_make_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 12:00:20 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 10:43:24 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:26:39 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	init_tab(char *arv, t_data *d)
 
 	d->size_map = size_map(arv);
 	if (d->size_map == 0 || d->size_map == 1)
-		return (-1);
+		return (ft_putstr_fd("Error\nInvalid file\n", 2), -1);
 	tab = malloc(sizeof(char **) * (d->size_map + 2));
 	if (tab == NULL)
 		return (-1);

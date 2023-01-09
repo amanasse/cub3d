@@ -6,7 +6,7 @@
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:59:03 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/04 18:11:45 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:48:46 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	calculate_draw_start_and_end(t_data *d)
 			d->ray.map_y += d->ray.step_y;
 			d->ray.side = 1;
 		}
-		if (d->tab[d->ray.map_y][d->ray.map_x] == '1'
-			|| d->tab[d->ray.map_y][d->ray.map_x] == 'X')
+		if (d->tab[d->ray.map_y][d->ray.map_x] == '1')
 			d->ray.hit = 1;
+		else if (d->tab[d->ray.map_y][d->ray.map_x] == 'X')
+			break ;
 	}
 }
 

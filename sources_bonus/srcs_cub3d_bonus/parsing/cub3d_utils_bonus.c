@@ -6,7 +6,7 @@
 /*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 14:45:17 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/04 17:22:01 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:59:34 by amanasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_tab(t_data *data)
 	{
 		while (data->tab[i] != NULL)
 		{
-			printf ("tab[%d] = %s\n", i, data->tab[i]);
+			printf ("%s\n", data->tab[i]);
 			i++;
 		}
 	}

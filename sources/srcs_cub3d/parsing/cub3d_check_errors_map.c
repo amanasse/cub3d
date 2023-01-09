@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_check_errors_map.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:23:28 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/06 10:45:55 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:09:39 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_first_line(t_data *data, int j)
 		}
 		j++;
 	}
-	ft_putstr_fd("error\nno map\n", 2);
+	ft_putstr_fd("Error\nNo map\n", 2);
 	free_tab(data);
 	return (-1);
 }
@@ -71,7 +71,7 @@ int	check_after_last_line(t_data *data)
 			if (data->tab[i][k] != '1' || data->tab[i][k] != ' '
 					|| data->tab[i][k] != '\0')
 			{
-				ft_putstr_fd("error\nwrong map3", 2);
+				ft_putstr_fd("Error\nWrong map\n", 2);
 				return (free_tab(data), -1);
 			}
 			k++;
@@ -88,7 +88,7 @@ int	check_borders(t_data *data, int i, int j, int k)
 		if (data->tab[i][k] == '0' || data->tab[i][k] == 'N'
 			|| data->tab[i][k] == 'W' || data->tab[i][k] == 'E'
 				|| data->tab[i][k] == 'S')
-			return ((ft_putstr_fd("error\nwrong map: borders", 2), -1));
+			return ((ft_putstr_fd("Error\nWrong map: borders", 2), -1));
 		k++;
 	}
 	k = -1;
@@ -97,14 +97,14 @@ int	check_borders(t_data *data, int i, int j, int k)
 		if (data->tab[j][k] == '0' || data->tab[j][k] == 'N'
 			|| data->tab[j][k] == 'W' || data->tab[j][k] == 'E'
 				|| data->tab[j][k] == 'S')
-			return ((ft_putstr_fd("error\nwrong map: borders", 2), -1));
+			return ((ft_putstr_fd("Error\nWrong map: borders", 2), -1));
 	}
 	while (i <= j && data->tab[i][0])
 	{
 		if (data->tab[i][0] == '0' || data->tab[i][0] == 'N'
 			|| data->tab[i][0] == 'W' || data->tab[i][0] == 'E'
 				|| data->tab[i][0] == 'S')
-			return ((ft_putstr_fd("error\nwrong map: borders", 2), -1));
+			return ((ft_putstr_fd("Error\nWrong map: borders", 2), -1));
 		i++;
 	}
 	return (0);

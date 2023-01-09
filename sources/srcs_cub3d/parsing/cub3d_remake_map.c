@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_remake_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:30:43 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 09:42:23 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:00:44 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_many_lines(t_data *data)
 	int	count;
 
 	count = 0;
-	i = data->map.first_line;
+	i = data->map.first_line - 1;
 	while (i > 0)
 	{
 		count += count_lines(data->tab[i]);
@@ -91,7 +91,7 @@ int	check_many_lines(t_data *data)
 	}
 	if (count > 6)
 	{
-		ft_putstr_fd("error\nwrong map 8\n", 2);
+		ft_putstr_fd("Error\nWrong map\n", 2);
 		free_tab (data);
 		return (-1);
 	}
@@ -111,7 +111,7 @@ int	remake_map(t_data *data)
 		data->last_info++;
 	}
 	if (data->map.count == 0)
-		return (free_tab(data), ft_putstr_fd("error\nwrong map 9\n", 2), -1);
+		return (free_tab(data), ft_putstr_fd("Error\nWrong map\n", 2), -1);
 	if (check_first_line(data, j) == -1)
 		return (-1);
 	if (check_many_lines(data) == -1)
@@ -119,6 +119,8 @@ int	remake_map(t_data *data)
 	if (check_last_line(data, j) == -1)
 		return (-1);
 	if (check_after_last_line(data) == -1)
+		return (-1);
+	if (check_backslash_zero(data) == -1)
 		return (-1);
 	if (remake_map2(data) == -1)
 		return (-1);

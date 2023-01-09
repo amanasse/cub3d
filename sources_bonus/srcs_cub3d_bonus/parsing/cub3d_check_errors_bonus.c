@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_check_errors.c                               :+:      :+:    :+:   */
+/*   cub3d_check_errors_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/02 12:02:12 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:37:06 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ int	check_if_tab(char *str, char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		if (ft_strnstr(tab[i], str, 2) == 0)
+		if (ft_strnstr(tab[i], str, ft_strlen(str)) == 0)
 		{
 			if (check_if_doublon (tab[i], str) == -1)
-				return (printf("Error: too many %s\n", str), -1);
+				return (ft_putstr_fd("Error\nSame element\n", 2), -1);
 			count += 1;
 		}
 		i++;
 	}
 	if (count == 0)
-		return (printf("error: missing %s\n", str), -1);
+		return (ft_putstr_fd("Error\nMissing element\n", 2), -1);
 	if (count > 1)
-		return (printf ("error: too many %s\n", str), -1);
+		return (ft_putstr_fd ("Error\nToo many elements\n", 2), -1);
 	return (0);
 }
 
@@ -87,7 +87,7 @@ int	check_doublon_path(t_data *d)
 		while (j < 3)
 		{
 			if (i != j && ft_strcmp(tab[i], tab[j]) == 0)
-				return (printf("error\ntextures are similar\n"),
+				return (ft_putstr_fd("Error\nTextures are similar\n", 2),
 					free_tab(d), -1);
 			j++;
 		}
@@ -105,17 +105,14 @@ int	check_tab_doublon(t_data *data)
 	while (data->check_tab[i])
 	{
 		if (check_if_tab(data->check_tab[i], data->tab) == -1)
-		{
-			free_tab(data);
-			return (-1);
-		}
+			return (free_tab(data), -1);
 		if (save_path(data->check_tab[i], data) == -1)
-		{
-			free_tab(data);
-			return (-1);
-		}
+			return (free_tab(data), -1);
 		if (check_all_path(data) == 1)
-			data->last_info = data->make_i;
+		{
+			if (save_last_info(data) == 1)
+				break ;
+		}
 		i++;
 	}
 	if (check_doublon_path(data) == -1)

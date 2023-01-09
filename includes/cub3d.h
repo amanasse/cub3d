@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 10:42:39 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:01:54 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ int		check_zero(t_data *data);
 int		check_x_in_top_line(char *str, int j);
 int		check_x_in_down_line(char *str, int j);
 int		check_x_in_line(char *str, int j);
+int		check_backslash_zero(t_data *data);
 
 //COLORS
 int		make_colors(t_color *color, t_data *data);
@@ -238,17 +239,16 @@ int		destroy_mlx(t_data	*d);
 void	free_tab(t_data *d);
 
 //INIT MINILIBX
-void	init_minilibx(t_data *d);
+int		init_minilibx(t_data *d);
 int		deal_key(int key, t_data *d);
 int		ft_close(t_data *d);
-void	get_textures1(t_data *d);
-void	get_textures2(t_data *d);
+int		get_textures1(t_data *d);
+int		get_textures2(t_data *d);
 
 //RAY CASTING
 int		ray_casting(t_data *d);
-void	draw_ceiling_floor(t_data *d, int x, int y);
+int		draw_ceiling_floor(t_data *d, int x, int y);
 void	draw(t_data *d, int i);
-int		init_map_temp(char *file, t_data *d);
 void	init_vectors(t_data *d);
 void	init_vectors_N_S(t_data *d);
 

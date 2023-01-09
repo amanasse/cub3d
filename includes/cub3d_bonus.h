@@ -6,7 +6,7 @@
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 13:39:25 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/04 18:04:42 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:01:39 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../sources/libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <math.h>
+# include <errno.h>
 
 typedef struct s_ray
 {
@@ -120,6 +121,8 @@ typedef struct s_data
 	void	*win_ptr;
 	void	*p;
 	void	*b;
+	int		c_i;
+	int		c_j;
 	int		sizex;
 	int		sizey;
 	int		rx;
@@ -186,6 +189,11 @@ int		check_tab_doublon(t_data *data);
 void	init_check_tab(t_data *data);
 int		check_if_tab(char *str, char **tab);
 int		check_colors(t_color *color, t_data *d);
+int		check_zero(t_data *data);
+int		check_x_in_top_line(char *str, int j);
+int		check_x_in_down_line(char *str, int j);
+int		check_x_in_line(char *str, int j);
+int		check_backslash_zero(t_data *data);
 
 //COLORS
 int		make_colors(t_color *color, t_data *data);
@@ -198,12 +206,20 @@ int		ft_init_struct(t_data *d);
 //MAP
 int		count_largest_line(t_data *data);
 int		remake_map(t_data *data);
+int		remake_map2(t_data *data);
+int		save_last_info(t_data *data);
+int		new_map(t_data *data, int j);
 int		check_first_line(t_data *data, int j);
 int		check_last_line(t_data *data, int j);
 int		check_after_last_line(t_data *data);
 int		check_map_caracters(char *str, t_map *map);
 int		check_borders(t_data *data, int i, int j, int k);
 void	set_player_info(t_data *data);
+
+char	**make_new_tab2(t_data *data, int first, int last);
+char	**make_new_tab3(char **tab, t_data *data, int first, int last);
+char	*make_last_line(char *str, t_data *data);
+int		correct_map(t_data *data, int first, int last);
 
 //UTILS
 int		ft_strlen_cub3d(char *str);
@@ -223,17 +239,16 @@ int		destroy_mlx(t_data	*d);
 void	free_tab(t_data *d);
 
 //INIT MINILIBX
-void	init_minilibx(t_data *d);
+int		init_minilibx(t_data *d);
 int		deal_key(int key, t_data *d);
 int		ft_close(t_data *d);
-void	get_textures1(t_data *d);
-void	get_textures2(t_data *d);
+int		get_textures1(t_data *d);
+int		get_textures2(t_data *d);
 
 //RAY CASTING
 int		ray_casting(t_data *d);
-void	draw_ceiling_floor(t_data *d, int x, int y);
+int		draw_ceiling_floor(t_data *d, int x, int y);
 void	draw(t_data *d, int i);
-int		init_map_temp(char *file, t_data *d);
 void	init_vectors(t_data *d);
 void	init_vectors_N_S(t_data *d);
 

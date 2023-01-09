@@ -1,0 +1,8 @@
+
+
+F  150,50,255
+NO ./texture/n.xpm
+EA ./texture/e.xpm
+SO ./texture/s.xpm
+WE ./texture/w.xpm
+C 0,100,255

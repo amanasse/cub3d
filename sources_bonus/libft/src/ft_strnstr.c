@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 12:19:58 by amanasse          #+#    #+#             */
-/*   Updated: 2022/12/19 16:19:34 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:56:33 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,9 @@ int	ft_strnstr(const char *big, const char *little, size_t len)
 		return (1);
 	while (str1[i] != '\0')
 	{
-		if (i + ft_strlen(str2) > len)
-			return (1);
 		if (ft_strncmp(str1 + i, str2, ft_strlen(str2)) == 0)
 			return (0);
 		i++;
 	}
 	return (1);
 }
-/*
-int main ()
-{
-	char str1[] = "Salut le";
-	char str2[] = "le";
-	int i = 7;
-
-	printf("%s\n", ft_strnstr(str1, str2, sizeof(char) * i));
-	//printf("%s\n", strnstr(str1, str2, sizeof(char) * i));
-
-
-	return 0;
-}
-*/

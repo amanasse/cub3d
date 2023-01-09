@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_make_colors.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amanasse <amanasse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 15:00:28 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/05 14:56:02 by amanasse         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:43:49 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	make_colors(t_color *color, t_data *data)
 	if (color->r < 0 || color->g < 0 || color->b < 0 || color->r > 255
 		|| color->g > 255 || color->b > 255)
 	{
-		ft_putstr_fd("error\ncolor: must be 0 to 255\n", 2);
+		ft_putstr_fd("Error\nColor: must be 0 to 255\n", 2);
 		free_split_tab(tab);
 		free_tab(data);
 		return (-1);
