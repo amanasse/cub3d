@@ -101,6 +101,7 @@ clean:
 
 fclean:		clean
 			@make -C ./sources/libft fclean
+			@make -C ./sources_bonus/libft fclean
 			@make -C minilibx-linux clean
 			@rm -f cub3D
 			@rm -f cub3D_bonus

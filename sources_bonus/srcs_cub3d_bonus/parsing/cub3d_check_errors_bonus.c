@@ -6,7 +6,7 @@
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 11:58:32 by amanasse          #+#    #+#             */
-/*   Updated: 2023/01/06 13:37:06 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:59:48 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	check_doublon_path(t_data *d)
 	while (i < 3)
 	{
 		j = 0;
-		while (j < 3)
+		while (j <= 3)
 		{
 			if (i != j && ft_strcmp(tab[i], tab[j]) == 0)
 				return (ft_putstr_fd("Error\nTextures are similar\n", 2),

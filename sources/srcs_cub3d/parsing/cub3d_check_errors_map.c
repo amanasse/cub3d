@@ -6,7 +6,7 @@
 /*   By: mede-sou <mede-sou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:23:28 by mede-sou          #+#    #+#             */
-/*   Updated: 2023/01/06 15:09:39 by mede-sou         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:35:24 by mede-sou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	check_after_last_line(t_data *data)
 		k = 0;
 		while (data->tab[i][k])
 		{
-			if (data->tab[i][k] != '1' || data->tab[i][k] != ' '
-					|| data->tab[i][k] != '\0')
+			if (!(data->tab[i][k] == '1' || data->tab[i][k] == ' '))
 			{
 				ft_putstr_fd("Error\nWrong map\n", 2);
 				return (free_tab(data), -1);
